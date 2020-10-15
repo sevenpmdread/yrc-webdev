@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Sign Up/Apprify</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet">
+
+
+  
+  
+      <link rel="stylesheet" href="style.css">
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+ 
+	<script type="text/javascript" src = "paper-full.js"></script>
+	</script>
+	<script type="text/paperscript" canvas="myCanvas">
+// The amount of circles we want to make:
+var count = Math.floor(Math.random()*500);
+
+// Create a symbol, which we will use to place instances of later:
+var path = new Path.Circle({
+	center: [0, 0],
+	radius: 4,
+	fillColor: 'red',
+	strokeColor: 'white'
+});
+
+var symbol = new Symbol(path);
+
+// Place the instances of the symbol:
+for (var i = 0; i < count; i++) {
+	// The center position is a random point in the view:
+	var center = Point.random() * view.size;
+	var placedSymbol = symbol.place(center);
+	placedSymbol.scale(i / count);
+}
+
+// The onFrame function is called up to 60 times a second:
+function onFrame(event) {
+	// Run through the active layer's children list and change
+	// the position of the placed symbols:
+	for (var i = 0; i < count; i++) {
+		var item = project.activeLayer.children[i];
+		
+		// Move the item 1/20th of its width to the right. This way
+		// larger circles move faster than smaller circles:
+		item.position.x += item.bounds.width / 20;
+
+		// If the item has left the view on the right, move it back
+		// to the left:
+		if (item.bounds.left > view.size.width) {
+			item.position.x = -item.bounds.width;
+		}
+	}
+}
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+</script>
+</head>
+<body>
+	 
+
+
+
+
+ 
+ <div id="nav" class="nav" id = "content">
+   
+  <ul>
+    
+    <li><a href="#home" id = "yrc">Youth Red Cross</a></li>
+    <li><a href="addcase.html">Add case</a></li>
+
+    <li><a href="adddonor.html">Add Donor</a></li>
+    <li><a href="caselist.html">Case List</a></li>
+    <li><a href="#contact">Donor list</a></li>
+    <li><a href="#contact">Today's Cases</a></li>
+    <li><a href="#contact">Donation Rules</a></li>
+
+
+  </ul>
+</div> 
+	
+
+<canvas id="myCanvas" >
+
+</canvas>
+
+<div  id = "myDivId">
+<div class="split left" >
+  <div class="centered">
+   <div class="container">
+   <form  >
+
+   
+    
+    
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" id = "u_email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" id = "u_password" required>
+
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" id = "confirmPassword" required>
+    
+    <label>
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+    
+    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+    <div class="clearfix">
+      <button type="submit" class="signupbtn" onclick = "createUser()">Sign Up</button>
+    </div>
+  </div>
+  </form>
+</div>
+  </div>
+
+<div class="split right" >
+  <div class="centered" >
+   
+    <h2>Youth Red Cross</h2>
+    <p></p>
+  </div>
+</div>
+</div>
+</div>
+
+ 
+</div>
+</div>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDUGAAhB0kYbWSb1gxcndSDgxEIYHXzM-w",
+    authDomain: "zeta-crossbar-244707.firebaseapp.com",
+    databaseURL: "https://zeta-crossbar-244707.firebaseio.com",
+    projectId: "zeta-crossbar-244707",
+    storageBucket: "zeta-crossbar-244707.appspot.com",
+    messagingSenderId: "937745697651",
+    appId: "1:937745697651:web:810d2c49074d6c18"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+    <script  src="script.js"></script>
+        <script  src="SignUp.js"></script>
+
+
+</body>
+</html>
+

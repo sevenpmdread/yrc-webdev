@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Sign Up/Apprify</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet">
+
+
+  
+  
+      <link rel="stylesheet" href="donorcss.css">
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+ 
+	<script type="text/javascript" src = "paper-full.js"></script>
+	
+
+	<script type="text/paperscript" canvas="myCanvas">
+// The amount of circles we want to make:
+var count = 150;
+
+// Create a symbol, which we will use to place instances of later:
+var path = new Path.Circle({
+	center: [0, 0],
+	radius: 4,
+	fillColor: '#2e656fc7',
+	strokeColor: 'white'
+});
+
+var symbol = new Symbol(path);
+
+// Place the instances of the symbol:
+for (var i = 0; i < count; i++) {
+	// The center position is a random point in the view:
+	var center = Point.random() * view.size;
+	var placedSymbol = symbol.place(center);
+	placedSymbol.scale(i / count);
+}
+
+// The onFrame function is called up to 60 times a second:
+function onFrame(event) {
+	// Run through the active layer's children list and change
+	// the position of the placed symbols:
+	for (var i = 0; i < count; i++) {
+		var item = project.activeLayer.children[i];
+		
+		// Move the item 1/20th of its width to the right. This way
+		// larger circles move faster than smaller circles:
+		item.position.x += item.bounds.width / 20;
+
+		// If the item has left the view on the right, move it back
+		// to the left:
+		if (item.bounds.left > view.size.width) {
+			item.position.x = -item.bounds.width;
+		}
+	}
+}
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+</script>
+</head>
+<body>
+	 
+
+
+
+
+ 
+ <div id="nav" class="nav" id = "content">
+  <ul>
+		  <li><a href="login.html" id = "yrc">Youth Red Cross</a></li>
+    <li><a href="addcase.html">Add case</a></li>
+    <li><a href="adddonor.html">Add Donor</a></li>
+    <li><a href="caselist.html">Case List</a></li>
+    <li><a href="donorlist.html">Donor list</a></li>
+    <li><a href="#contact">Today's Cases</a></li>
+    <li><a href="#contact">Donation Rules</a></li>
+
+
+  </ul>
+</div> 
+	
+
+<canvas id="myCanvas" >
+
+</canvas>
+	<div class="split left" >
+		<div class="centered">
+		 <div class="container">
+		 <form action="/action_page.php" >
+	
+		 <h2>Fill in the Details</h2>
+			
+			
+			<label for="email"><b>Donor Name</b></label>
+			<input type="text" placeholder="Enter Name" name="email" required id ="name">
+	
+			<label for="psw"><b>Phone Number (Whatsapp)</b></label>
+			<input type="text" placeholder="Phone number" name="psw" required id= "phonenumber">
+	
+			<label for="email">On which day are you free after 5pm</label><br><br>
+
+<select class = "days">
+  <option value="Monday">Monday</option>
+  <option value="Tuesday">Tuesday</option>
+  <option value="Wednesday">Wednesday</option>
+  <option value="Thursday">Thurday</option>
+   <option value="Friday">Friday</option>
+    <option value="Saturday">Saturday</option>
+        <option value="Sunday">Sunday</option>
+
+    
+
+
+</select>
+  
+			
+			
+			
+	
+			<div class="clearfix">
+				<button type="submit" class="signupbtn">Submit</button>
+			</div>
+		</div>
+		</form>
+	</div>
+		</div>
+	
+	
+	
+	</div>
+
+
+ 
+</div>
+</div>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+  
+
+		<script  src="script2.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Sign Up/Apprify</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet">
+
+
+  
+  
+      <link rel="stylesheet" href="style.css">
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+ 
+	<script type="text/javascript" src = "paper-full.js"></script>
+
+
+
+	<script type="text/paperscript" canvas="myCanvas">
+// The amount of circles we want to make:
+var count = 200;
+
+// Create a symbol, which we will use to place instances of later:
+var path = new Path.Circle({
+	center: [0, 0],
+	radius: 4,
+	fillColor: 'red',
+	strokeColor: 'white'
+});
+
+var symbol = new Symbol(path);
+
+// Place the instances of the symbol:
+for (var i = 0; i < count; i++) {
+	// The center position is a random point in the view:
+	var center = Point.random() * view.size;
+	var placedSymbol = symbol.place(center);
+	placedSymbol.scale(i / count);
+}
+
+// The onFrame function is called up to 60 times a second:
+function onFrame(event) {
+	// Run through the active layer's children list and change
+	// the position of the placed symbols:
+	for (var i = 0; i < count; i++) {
+		var item = project.activeLayer.children[i];
+		
+		// Move the item 1/20th of its width to the right. This way
+		// larger circles move faster than smaller circles:
+		item.position.x += item.bounds.width / 20;
+
+		// If the item has left the view on the right, move it back
+		// to the left:
+		if (item.bounds.left > view.size.width) {
+			item.position.x = -item.bounds.width;
+		}
+	}
+}
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+
+</script>
+</head>
+<body>
+	 
+
+
+
+
+ 
+ <div id="nav" class="nav" id = "content">
+  <ul>
+		  <li><a href="login.html" id = "yrc">Youth Red Cross</a></li>
+    <li><a href="addcase.html">Add case</a></li>
+    <li><a href="adddonor.html">Add Donor</a></li>
+    <li><a href="caselist.html">Case List</a></li>
+    <li><a href="#services">Donor list</a></li>
+    <li><a href="#contact">Today's Cases</a></li>
+    <li><a href="#contact">Donation Rules</a></li>
+
+
+  </ul>
+</div> 
+	
+
+<canvas id="myCanvas" >
+
+</canvas>
+	<div class="split left" >
+		<div class="centered">
+		 <div class="container">
+		 <form id = "form2" >
+	
+		 
+			
+			
+			<label for="email"><b>Contact Person</b></label>
+			<input type="text" placeholder="Enter Name" name="contactper" id = "contactper" >
+	
+			<label for="psw"><b>Relation to Patient</b></label>
+			<br>
+			<input type="text" placeholder="Relation" name="relation" id = "relation" >
+	
+			<label for="psw-repeat"><b>Phone Number of contact person</b></label><br>
+			<input type="text" placeholder="Phone number" name="contact-related" id = "contact-related" >
+			<label for="email"><b>Blood slips provided by the doctor</b></label><br>
+		<input type="text" placeholder="count" name="bloodslips" id = "bloodslips" >
+
+		<label for="psw"><b>Platelet slips provided by the doctor</b></label><br>
+		<input type="text" placeholder="count" name="plaslips" id = "plaslips" >
+
+	
+		
+			
+			
+			
+			
+	
+			<div class="clearfix">
+				<button type="submit" >Sign Up</button>
+			</div>
+		</div>
+		</form>
+	</div>
+		</div>
+	
+	<div class="split right" >
+		<div class="centered" >
+		 
+			<form id = "form2" action="/action_page.php" >
+	
+		 
+			<br>
+			<br>
+	
+				<label for="email"><b>Patient Name</b></label>
+				<input type="text" placeholder="Name" name="pname" id = "pname">
+		
+				<label for="psw"><b>Patient Age</b></label>
+				<input type="text" placeholder="Age" name="patage" id = "patage" >
+		
+				<label for="psw-repeat"><b>Hospital ID</b></label>
+				<input type="text" placeholder="ID" name="id" id = "id" >
+				<label for="email"><b>Disease</b></label>
+				<input type="text" placeholder="Disease" name="disease" id ="disease" >
+		
+				<label for="start">operation date:</label>
+	
+	<input type="date" id="odate" name="trip-start"
+				 value="dd-mm-yy"
+				 min="2019-01-01" max="2019-12-31">
+	
+		
+				<label for="psw-repeat"><b>Phone Number</b></label>
+				<input type="text" placeholder="+91" name="phonenumber" id = "phonenumber">
+				
+				
+				
+		
+			
+			</div>
+			</form>
+		</div>
+	
+	</div>
+
+
+ 
+
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+	<script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+		<script  src="script2.js"></script>
+		<script src ="addcase.js"></script>
+
+</body>
+</html>
+
